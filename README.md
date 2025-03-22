@@ -14,7 +14,7 @@ This Flask-based web application allows users to interact with a chatbot to requ
    python -m venv .venv
    .venv\Scripts\activate    # Windows
    pip install -r requirements.txt
-3. Create the following files in the root directory and paste in your API keys:
+3. Create the following files in the root directory and paste in your API keys (see _Obtaining API Keys_ section below):
 
    - `openweather_api_key.txt`  
    - `google_api_key.txt`  
@@ -24,6 +24,19 @@ This Flask-based web application allows users to interact with a chatbot to requ
    ```bash
    python main.py
 5. Open a browser and go to **http://127.0.0.1:5000**
+
+## Obtaining API Keys
+
+Before running the application, you will need to register for API keys from the following services:
+
+- **OpenWeatherMap** (current weather & 5-day forecast):  
+  https://home.openweathermap.org/users/sign_up
+
+- **Google Maps Static API** (map image display):  
+  https://console.cloud.google.com/google/maps-apis
+
+- **Geoapify Places API** (local attractions):  
+  https://myprojects.geoapify.com
 
 
 ## Project Structure
@@ -37,7 +50,6 @@ This Flask-based web application allows users to interact with a chatbot to requ
 ## Known Limitations
 
 - Error handling for failed API calls (e.g. invalid keys) currently triggers a generic internal error.  
-- Cache usage is implemented but not programmatically verified in testing.  
 - Manual testing was used for chatbot responses; no automation.
 
 ## Requirements
