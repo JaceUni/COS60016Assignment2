@@ -1,0 +1,9 @@
+{
+    "conversations": [
+        ["Hello", "Hello! How can I assist you with weather information?"],
+        ["What's the weather like in {city}?", "Let me check the forecast for {city}. The temperature is {temp}°C, humidity is {humidity}%."],
+        ["Is it raining in {city}?", "Checking now... the weather in {city} is {condition} with a temperature of {temp}°C."],
+        ["Should I bring an umbrella?", "If rain is forecasted, yes! Let me check."],
+        ["Suggest something to do in {city}.", "Checking local attractions based on the weather in {city}."]
+    ]
+}
