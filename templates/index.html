@@ -1,1 +1,63 @@
+{% extends "base.html" %}
 
+{% block title %}Weather Chatbot{% endblock %}
+
+{% block header %}
+    <h2>Weather Chatbot of Meteorologist the Not-So-Magnificent</h2>
+{% endblock %}
+
+{% block content %}
+<div id="content-container">
+    <!-- Left side of the screen is the ChatBot column -->
+    <div id="chat-column">
+        <div id="chat-box">
+            <div id="chat-history">
+                {% for message in chat_history %}
+                    {% if message.user == "Bot" %}      <!-- Position chatbot messages on left side, user messages on right side -->
+                        <div class="chat-message bot-message"><p>{{ message.text }}</p></div>
+                    {% else %}
+                        <div class="chat-message user-message"><p>{{ message.text }}</p></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <form method="POST" id="chat-form">
+            <input type="text" id="user-input" name="user_input" placeholder="Type your message here..." autocomplete="off">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <!-- Right side of the screen is map & weather column -->
+    <div id="map-column">
+        {% if weather and weather.main %}
+            <div id="weather_results">
+                <h3>Weather in {{ weather.name }}</h3>
+                <p>Temperature: {{ weather.main.temp }}°C</p>
+                <p>Condition: {{ weather.weather[0].description | title }}</p>
+                <p>Humidity: {{ weather.main.humidity }}%</p>
+                {% if weather.wind %}
+                    <p>Wind Speed: {{ (weather.wind.speed * 3.6) | round(1) }} km/h</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if forecast and forecast.daily_summary %}
+            <div id="forecast_results">
+                <h3>5-Day Forecast for {{ forecast.city | title }}</h3>
+                {% for line in forecast.daily_summary %}        <!-- Provide forecast for each day on a separate line -->
+                    {{ line }}<br />
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if map_img %}
+            <div id="map">
+                <img src="{{ map_img }}" alt="Location Map">
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <p>© 2025 404 Sunshine Not Found, Inc.</p>
+{% endblock %}

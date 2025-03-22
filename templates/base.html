@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+    <header>
+        {% block header %}{% endblock %}
+    </header>
 
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}{% endblock %}
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // If chat history is longer than the page length, automatically scroll to the bottom of the messages (Ref: GeeksforGeeks, 2024).
+        const chatBox = document.getElementById('chat-box');
+        if (chatBox) {
+          setTimeout(function() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }, 50);
+        }
+
+        // Put the text cursor into the textbox ready for each user message (Ref: W3Schools, n.d.).
+        const userInput = document.getElementById('user-input');
+        if (userInput) {
+          userInput.focus();
+        }
+
+        const chatForm = document.getElementById('chat-form');
+        if (chatForm) {
+          chatForm.addEventListener('submit', function(e) {
+            setTimeout(function() {
+              userInput.value = '';     // Clear the chat textbox after user submits message.
+            }, 10);
+          });
+        }
+        });
+    </script>
+
+</body>
+</html>
